@@ -1,12 +1,11 @@
 const { Schema, model } = require("mongoose");
-// const dateFormat = require('../utils/dateFormat');
+const dateFormat = require('../utils/dateFormat');
 const bcrypt = require("bcrypt");
-// const { profile } = require('console');
+
 
 const userSchema = new Schema({
   userName: {
     type: String,
-    // required: 'You need to leave a thought!',
     required: true,
     unique: true,
     // minlength: 1,
@@ -28,6 +27,13 @@ const userSchema = new Schema({
     trim: true,
     minLength: 8,
   },
+  //  Animals: [
+//   {
+//     type:Schema.Types.ObjectId,
+//     ref: 'Animals'
+//   },
+//  ],
+
 });
 
 // setting up pre-save middleware to create password
@@ -44,6 +50,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-const User = model("user", userSchema);
+const User = model("User", userSchema);
 
 module.exports = User;

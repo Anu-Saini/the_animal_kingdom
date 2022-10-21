@@ -1,5 +1,5 @@
-const Animals = require('./animal');
-const Users = require('./user');
-const Class = require('./class');
+const Animal = require('./Animal');
+const User = require('./User');
+const Class = require('./Class');
 
-module.exports = { Animals, Users , Class};
+module.exports = { Animal, User , Class};

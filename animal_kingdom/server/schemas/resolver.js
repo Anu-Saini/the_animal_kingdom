@@ -20,7 +20,7 @@ const resolvers = {
     },
 
     animals: async () => {
-      return Animals.find();
+      return Animal.find();
     },
     animal: async (parent, { animalId }) => {
       return Animal.findOne({ _id: animalId });
@@ -32,9 +32,7 @@ const resolvers = {
     user: async (parent, { userId }) => {
       return User.findOne({ _id: userId });
     },
-  
-  
-  },
+   },
 
   
   Mutation: {

@@ -14,13 +14,13 @@ const classSchema = new Schema({
       ref: "Animal",
     },
   ],
-  Characterstics: {
+  about: {
     type: String,
     trim: true,
     maxlength: 1000,
   },
 });
 
-const Class = model("class", classSchema);
+const Class = model("Class", classSchema);
 
 module.exports = Class;

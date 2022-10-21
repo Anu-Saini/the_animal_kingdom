@@ -1,10 +1,9 @@
 const { Schema, model } = require('mongoose');
-//const dateFormat = require('../utils/dateFormat');
+const dateFormat = require('../utils/dateFormat');
 
 const animalSchema = new Schema({ 
  animalName: {
     type: String,
-    // required: 'You need to leave a thought!',
     required: true,
     unique:true,
     // minlength: 1,
@@ -14,6 +13,10 @@ const animalSchema = new Schema({
   otherName: {
     type: String,
     trim: true,
+  },
+  class:{
+    type: String,
+    required: true,
   },
   family: {
   type: String,
@@ -65,17 +68,17 @@ submitOn: {
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-editedBy: {
-  type: Schema.Types.ObjectId,
-  ref: 'user'
-   },
-  editedOn: {
-      type: Date,
-      default: Date.now,
-      get: (timestamp) => dateFormat(timestamp),
-    },
+// editedBy: {
+//   type: Schema.Types.ObjectId,
+//   ref: 'user'
+//    },
+//   editedOn: {
+//       type: Date,
+//       default: Date.now,
+//       get: (timestamp) => dateFormat(timestamp),
+//     },
   });
 
-const Animals = model('animal', animalSchema);
+const Animal = model('Animal', animalSchema);
 
-module.exports = Animals;
+module.exports = Animal;
