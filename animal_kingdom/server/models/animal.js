@@ -61,13 +61,13 @@ description : {
 },
 submitBy : {
  type: Schema.Types.ObjectId,
- ref: 'user'
+ ref: 'User'
 },
 submitOn: {
     type: Date,
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
-  },
+  }
 // editedBy: {
 //   type: Schema.Types.ObjectId,
 //   ref: 'user'

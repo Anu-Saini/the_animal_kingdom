@@ -6,7 +6,7 @@ type Class {
   _id :ID
  className: String
  about: String
- animals : [Animal]!
+ animals : [Animal]
 }
 
 type Animal {
@@ -15,7 +15,7 @@ type Animal {
   otherName: String
   class: String
   family: String
-  age: Int
+  age: String
   foods: String
   population : String
   image: [String]!
@@ -24,14 +24,15 @@ type Animal {
   description: String
   submitBy: User
   submitOn: String
- }
+  }
 
 type User {
   _id: ID
- name: String
-  email: String
+ userName: String
+ email: String
   password: String
-  }
+  animals: [Animal]!
+}
 type Auth {
   token: ID!
   user: User
@@ -42,7 +43,7 @@ type Auth {
     class(classId: ID!): Class
     animals: [Animal]
     animal(animalId: ID!): Animal
-    users: [User]!
+     users: [User]
     user(userId: ID!): User
     me: User
    }
@@ -52,10 +53,11 @@ type Auth {
     updateAnimal(id:ID!, otherName: String!, age: Int!, foods: String! , population: String! , threats: String! ,location: String!  ): Animal
         
     addUser(userName: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+
     updateUser(userName: String!, email: String!, password: String!): Auth
     deleteUser(userName: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
-      }`;
+          }`;
 
 module.exports = typeDefs;
 
