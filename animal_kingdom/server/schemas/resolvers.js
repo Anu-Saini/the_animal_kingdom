@@ -93,8 +93,8 @@ const resolvers = {
         population,
         location,
         description,
-        submitBy,
-      });
+         });
+         
       const token = signToken(animal);
 
       return { token, animal };

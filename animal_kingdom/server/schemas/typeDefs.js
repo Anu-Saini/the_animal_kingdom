@@ -21,6 +21,7 @@ type Animal {
   image: [String]!
   threats: String
   location : [String]!
+  locationmap: String
   description: String
   submitBy: User
   submitOn: String
@@ -49,8 +50,8 @@ type Auth {
    }
 
   type Mutation {
-    addAnimal(animalName: String!, otherName: String!, class:String!, family: String!, age: Int!, foods: String! , population: String! ,  threats: String! , location: String!  ): Animal
-    updateAnimal(id:ID!, otherName: String!, age: Int!, foods: String! , population: String! , threats: String! ,location: String!  ): Animal
+    addAnimal(animalName: String!, otherName: String!, class:String!, family: String!, age: Int!, foods: String! , population: String! , image: String!,  threats: String! , location: String! ,  locationmap: String!, description: String!, submitBy: String! ): Animal
+    updateAnimal(id:ID!, otherName: String!, class:String!, family: String!, age: Int!, foods: String! , population: String! , image: String!,  threats: String! , location: String! ,  locationmap: String!, description: String!, submitBy: String!  ): Animal
         
     addUser(userName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth

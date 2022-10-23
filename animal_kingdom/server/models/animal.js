@@ -52,6 +52,10 @@ location : [
  trim: true,
 },
 ],
+locationmap :  {
+  type: String,
+  trim: true,
+ },
 description : {
  type: String,
  required: true,
