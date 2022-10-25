@@ -129,7 +129,7 @@ const resolvers = {
       },
       context
     ) => {
-      // if context gas a user property that means the user executing this mutation has a valid JWT and is logged in
+      // if context has a user property that means the user executing this mutation has a valid JWT and is logged in
       if (context.user) {
         return Animal.findOneAndUpdate(
           { _id: animalId },
