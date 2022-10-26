@@ -21,7 +21,7 @@ const AllAnimals = () => {
   }
   else{
   return ( 
-<div className='aniaml-list-container'>
+<div className='animal-list-container'>
   <List
     itemLayout="vertical"
     size="large"
@@ -36,23 +36,26 @@ const AllAnimals = () => {
         ]}
         extra={
           <img
-            width={272}
-            height={272}
+            width={300}
+            height={300}
             alt={item.animalName}
             src={item.image[1]}
           />
           
         }
       >
-        <List.Item.Meta
+        <List.Item.Meta 
           avatar={<Avatar src={item.image[0]} />}
-          title={<a href={item.href}>{item.animalName}</a>}
-          description={item.family} 
+
+          title={<a href={item.href} >{item.animalName} </a>}
+            description={item.family} 
           
         />
-        {item.description}
+        {item.description} 
       </List.Item>
     )}
-  /></div>)
+  />
+  </div>
+  )
       }};
 export default AllAnimals;

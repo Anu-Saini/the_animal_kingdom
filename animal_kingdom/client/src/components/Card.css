@@ -5,8 +5,8 @@ body {
 
 .flip-card {
  background-color: transparent;
- width: 300px;
- height: 300px;
+ width: 500px;
+ height: 500px;
  perspective: 1000px;
 }
 
@@ -41,4 +41,17 @@ body {
  background-color: #2980b9;
  color: white;
  transform: rotateY(180deg);
+ font-size: 30px;
+}
+.cardstack {
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ align-content: flex-start;
+ justify-content: center;
+ align-items: center;
+}
+.cardrow {
+ display: flex;
+ margin-top: 50px;
 }

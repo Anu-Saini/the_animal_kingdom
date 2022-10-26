@@ -9,7 +9,7 @@ function CarouselImages(props) {
     <>
       <div className="container">
         <div className="imgbox">
-        <img src={props.props.image[0]}  alt={props.props.animalName} style={{width:'700px', height:'350px'}} />
+        <img src={props.props.image[0]}  alt={props.props.animalName} style={{width:'850px', height:'500px'}} />
         </div>
         <div className="aboutbox">
         <div className="centered">{props.props.animalName} </div>

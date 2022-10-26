@@ -12,7 +12,9 @@ function AnimalList(props) {
         content:
         _.description
       }));
-  return (<> 
+
+  return (
+  <> 
     <List
     itemLayout="vertical"
     size="large"
@@ -37,8 +39,8 @@ function AnimalList(props) {
       >
         <List.Item.Meta
           avatar={<Avatar src={item.avatar} />}
-          title={<a href={item.href}>{item.title}</a>}
-          description={item.description}
+          title={<a href={item.href}>{item.title} </a>}
+          description={item.description} 
         />
         {item.content}
       </List.Item>
@@ -49,3 +51,4 @@ function AnimalList(props) {
   </>);
 }
 export default AnimalList;
+

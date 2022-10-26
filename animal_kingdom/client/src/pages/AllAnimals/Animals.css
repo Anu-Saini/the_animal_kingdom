@@ -1,4 +1,20 @@
-.aniaml-list-container{
+.animal-list-container{
  width: 80%;
  margin: auto;
+border: 2px solid Black;
+}
+
+/* /* .ant-list-split .ant-list-item {
+ border-bottom: 2px solid black;
+} */
+
+/* .ant-list-vertical .ant-list-item-meta-title {
+ font-size: 20px;
+}  */
+
+.ant-list-item-meta-title {
+ font-size: 20px;
+} 
+.ant-list {
+ font-size: 16px;
 }
