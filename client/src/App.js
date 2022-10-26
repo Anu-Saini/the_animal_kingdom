@@ -1,7 +1,8 @@
 // import logo from './logo.svg';
 import React from 'react';
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
-import  { Routes, Route } from 'react-router-dom';
+
+import  {  BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import RegisterUser from "./pages/RegisterUser";
@@ -21,6 +22,7 @@ function App() {
   return (
     <>
      <ApolloProvider client={client}>
+      {/* <Router> */}
     <Navbar/> 
     <Routes>    
         <Route path="/" element={<HomePage/>} />
@@ -31,6 +33,7 @@ function App() {
         <Route path="/guess" element={<GuessGame/>} />  
         <Route path="/allanimals" element={<AllAnimals/>} />  
     </Routes>
+    {/* </Router> */}
     </ApolloProvider>
     </>
   );
