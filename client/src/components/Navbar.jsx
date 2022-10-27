@@ -1,7 +1,7 @@
 import { Layout, Menu } from "antd";
 import React, { useState } from "react";
 import {Link } from 'react-router-dom';
-// const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Sider, Content } = Layout;
 const items = [
   {
     label: <a href="/">Home</a>,
