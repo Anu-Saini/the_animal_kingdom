@@ -1,44 +1,6 @@
-import React from "react";
-import MyCarousel from "../components/Carousel";
-import { QUERY_PROFILES } from "../queries/AnimalQuery";
+import React, { useState } from "react";
 
-import { useQuery } from "@apollo/client";
-import { CAROUSAL_LIMIT } from "../utils/Constants";
-
-const HomePage = () => {
-  const { loading, data } = useQuery(QUERY_PROFILES);
-  const profiles = data || [];
-  if (!loading) {
-    
-    
-    let len = profiles.animals.length;
-    var randomAnimals = [];
-    let previousIndex = -1;
-    while (randomAnimals.length < 4) {
-      const randomElement = Math.floor(Math.random() * len);
-      if (previousIndex === randomElement) {
-        continue;
-      }
-      randomAnimals.push(profiles.animals[randomElement]);
-      previousIndex = randomElement;
-    }
-  }
- 
-    return (
-      <main>
-        {/* <div className="flex-row justify-center"> */}
-          <div className="col-12 col-md-10 my-3">
-            {loading ? (
-              <div>Loading...</div>
-            ) : (
-              <MyCarousel data={randomAnimals}></MyCarousel>
-            )}
-          </div>
-        {/* </div> */}
-      </main>
-    );
-  };
-  
-  
-
-export default HomePage;
+const Locations = () =>(
+  <h1>Location</h1>
+);
+export default Locations;

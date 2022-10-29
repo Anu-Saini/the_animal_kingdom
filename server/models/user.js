@@ -25,12 +25,12 @@ const userSchema = new Schema({
    trim: true,
    minLength:8, 
  },
- animals: [
-  {
-    type:Schema.Types.ObjectId,
-    ref: 'Animal'
-  },
- ],
+//  animals: [
+//   {
+//     type:Schema.Types.ObjectId,
+//     ref: 'Animal'
+//   },
+//  ],
  });
 
   // setting up pre-save middleware to create password

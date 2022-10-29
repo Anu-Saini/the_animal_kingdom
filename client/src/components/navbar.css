@@ -1,0 +1,14 @@
+.maintitle {
+ font-size: 35px;
+ font-weight: bolder;
+ font-style: italic;
+ font-family: cursive;
+ background-color: burlywood;
+ }
+
+.indnt {
+ color: chocolate;
+}
+.topbar{
+ /* background-color: ; */
+}

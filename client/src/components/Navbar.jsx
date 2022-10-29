@@ -1,9 +1,12 @@
 import { Layout, Menu } from "antd";
+import './navbar.css';
 import React, { useState } from "react";
 import {Link } from 'react-router-dom';
 const { Header, Footer, Sider, Content } = Layout;
+
+
 const items = [
-  {
+    {
     label: <a href="/">Home</a>,
     key: "home",
   },
@@ -23,6 +26,8 @@ const items = [
     label: (<a href="/login">login</a>),
     key: "login",
   },
+
+  
 ];
 
 const Navbar = () => {
@@ -56,13 +61,17 @@ const Navbar = () => {
   };
   return (
     <>
-<Link to ="/locations">Locations</Link>
+
+  <h3 className='maintitle'><span className='indnt'>T</span>he <span className='indnt'>A</span>nimal <span className='indnt'>K</span>ingdom</h3>
+  <div className="topbar">
 <Menu
             onClick={onClick}
             selectedKeys={[current]}
             items={items}
             mode="horizontal"
-          />
+                     />
+       </div>   
+
       {/* <Layout>
         <Content>
          

@@ -1,13 +1,33 @@
 import { Button, Checkbox, Form, Input } from "antd";
-import React from "react";
-import RegisterUser from "./RegisterUser";
+import React, { useState } from 'react';
 import { Col, Row } from "antd";
 import "./Pages.css";
+import { useMutation, useQuery } from "@apollo/client";
+import { LOGIN_QUERY } from "../queries/AnimalQuery";
 
-const LoginPage = () => {
- 
-  const onFill = (values) => {
-    console.log(values);
+
+
+function LoginPage() {
+  const [formState, setFormState] = useState({
+    login: true,
+    email: '',
+    password: '',
+    name: ''
+  });
+
+  const [login, { data, loading, error }]= useMutation(LOGIN_QUERY, {
+
+    variables: {
+      email: formState.email,
+      password: formState.password
+    }}); 
+    
+   if(!loading && data)
+   {
+    console.log(data.login)
+   }
+  const checkLogin = (values) => {
+     
   };
   const onFinish = (values) => {
     console.log("Success:", values);
@@ -32,9 +52,11 @@ const LoginPage = () => {
             }}
             initialValues={{
               remember: true,
+              
             }}
-            onFinish={onFinish}
+            onFinish={login}
             onFinishFailed={onFinishFailed}
+            
             autoComplete="off"
           >
             <Form.Item
@@ -46,6 +68,13 @@ const LoginPage = () => {
                   message: "Please input your username!",
                 },
               ]}
+              value={formState.email}
+              onChange={(e) =>
+                setFormState({
+                  ...formState,
+                  email: e.target.value
+                })
+              }
             >
               <Input />
             </Form.Item>
@@ -59,6 +88,13 @@ const LoginPage = () => {
                   message: "Please input your password!",
                 },
               ]}
+              value={formState.password}
+              onChange={(e) =>
+                setFormState({
+                  ...formState,
+                  password: e.target.value
+                })
+              }
             >
               <Input.Password />
             </Form.Item>
@@ -89,10 +125,10 @@ const LoginPage = () => {
                 span: 16,
               }}
             >
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" >
                 Submit
               </Button>
-              <Button type="link" htmlType="button" onClick={onFill}>
+              <Button type="link" htmlType="button" >
                 Reset Password
               </Button>
             </Form.Item>

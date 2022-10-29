@@ -3,7 +3,6 @@ import MyCarousel from "../components/Carousel";
 import { QUERY_PROFILES } from "../queries/AnimalQuery";
 
 import { useQuery } from "@apollo/client";
-import { CAROUSAL_LIMIT } from "../utils/Constants";
 
 const HomePage = () => {
   const { loading, data } = useQuery(QUERY_PROFILES);
