@@ -2,7 +2,6 @@ const { AuthenticationError } = require("apollo-server-express");
 const { Animal, Class, User } = require("../models");
 const { signToken } = require("../utils/auth");
 const bcrypt = require('bcrypt');
-const stripe = require('stripe')('sk_test_51LyRaLCNXlGGeib4OSd3XyWwDSWtRMvaiWSqm8BAmY10ag2LyjeHDQrHJh2qbc7mRT2t0IxGwP01vADcPgWxcFY300OON6PzrM');
 
 const resolvers = {
   Query: {
@@ -10,7 +9,7 @@ const resolvers = {
       return Class.find({}).populate("animals");
     },
     class: async (parent, { classId }) => {
-      return Class.findOne({ _id: classId });
+      return Class.findOne({ _id: classId }).populate("animals");
     },
 
     //by addingcontext to our query, we can retrive the logged in user without specifically searching for them
@@ -24,38 +23,19 @@ const resolvers = {
     animals: async () => {
       return Animal.find();
     },
-    animal: async (parent, { userId }) => {
-      return Animal.find({ submitBy: userId });
-    },
 
+    animal: async (parent, { animalId }) => {
+      return await Animal.find({ submitBy: animalId });
+    },
 
     users: async () => {
-      return User.find();
+      return User.find().populate('animals');
     },
+    
     user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId });
-    },
-      //-------------------------------------------------------------------
-    user: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
-          populate: 'category'
-        });
-
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
-
-        return user;
-      }
-
-      throw new AuthenticationError('Not logged in');
+      return User.findOne({ _id: userId }).populate('animals');
     },
   },
-
-
-  //----------------------------------------------------------------
-
-
 
   Mutation: {
     addUser: async (parent, { userName, email, password }) => {
@@ -68,7 +48,7 @@ const resolvers = {
     },
 
     login: async (parent, { email, password }) => {
-      console.log(email)
+      
       // Look up the user by the provided email address. Since the `email` field is unique, we know that only one person will exist with that email
       const user = await User.findOne({ email });
       // If there is no user with that email address, return an Authentication error stating so
@@ -128,7 +108,7 @@ const resolvers = {
       });
       
        const token = signToken(animal);
-      console.log(animal)
+      
       return { id: animal._id, animalName: animal.animalName};
     },
     
@@ -136,45 +116,58 @@ const resolvers = {
     updateAnimal: async (
       parent,
       {
-        animalId,
+        id,
         animalName,
         othername,
+        classification,
         family,
         age,
         foods,
         population,
+        threats,
         location,
+        image,
         description,
+       submitBy
       },
       context
     ) => {
+      
       // if context gas a user property that means the user executing this mutation has a valid JWT and is logged in
       if (context.user) {
+        
         return Animal.findOneAndUpdate(
-          { _id: animalId },
+          { _id: id },
           {
-            $addToSet: {
+            
               animalName: animalName,
               othername: othername,
+              classification: classification, 
               family: family,
               age: age,
               foods: foods,
               population: population,
+              threats: threats,
+              image: image, 
               location: location,
               description: description,
-            },
+              submitBy: submitBy
+          
           },
-          {
-            new: true,
-            runvalidators: true,
-          }
+          
         );
       }
 
       // If user attempts to execute this mutation and isn't logged in, throw an error
       throw new AuthenticationError("You need to be logged in!");
     },
+
+    deleteAnimal: async (parent, {animalId  }) => {
+      return Animal.findOneAndDelete({ _id: animalId});
+    },
+
+    
   },
 };
 
-module.exports = resolvers;
+module.exports = resolvers

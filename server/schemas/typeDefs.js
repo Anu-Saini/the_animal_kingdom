@@ -16,9 +16,9 @@ type Animal {
   age: String
   foods: String
   population : String
-  image: [String]!
+  image: [String]
   threats: String
-  location : [String]!
+  location : [String]
   locationmap: String
   description: String
   submitBy: String
@@ -28,8 +28,8 @@ type User {
   _id: ID
  userName: String
  email: String
-  password: String
-  animals: [Animal]!
+ password: String
+ animals: [Animal]!
 }
 type Auth {
   token: ID!
@@ -39,15 +39,16 @@ type Auth {
     classes: [Class]
     class(classId: ID!): Class
     animals: [Animal]
-    animal(animalId: ID!): Animal
+    animal(animalId: String): [Animal]
     users: [User]
     user(userId: ID!): User
     me: User
    }
    type Mutation {
-    addAnimal(animalName: String!, otherName: String!, classification: String!, family: String!, age: Int!, foods: String! , population: String! , image: [String!],  threats: String! , location: [String!] ,description: String!, submitBy: String! ): Animal
-    updateAnimal(id:ID!, otherName: String!, class:String!, family: String!, age: Int!, foods: String! , population: String! , image: [String!],  threats: String! , location: [String!] ,  locationmap: String!, description: String!, submitBy: String!  ): Animal
-        
+    addAnimal(animalName: String!, otherName: String!, classification: String!, family: String!, age: String!, foods: String! , population: String! , image: [String!],  threats: String! , location: [String!] ,description: String!, submitBy: String! ): Animal
+    updateAnimal(id: ID!, animalName: String!, otherName: String!, classification: String!, family: String!, age: String, foods: String! , population: String! , image: [String!],  threats: String! , location: [String!] ,description: String!, submitBy: String!  ): Animal
+    deleteAnimal(animalId: ID!): Animal
+    
     addUser(userName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     updateUser(userName: String!, email: String!, password: String!): Auth
@@ -55,3 +56,4 @@ type Auth {
           }`;
 
 module.exports = typeDefs;
+

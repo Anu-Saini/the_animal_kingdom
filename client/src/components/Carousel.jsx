@@ -10,12 +10,8 @@ import CarouselImages from './CarouselImage';
 // };
 
 function MyCarousel(props) {
-// let data= [];
-// data = props.data;
-return (    
-   
-    
-    
+
+return (
   <Carousel autoplay>
     
      <div>

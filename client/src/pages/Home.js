@@ -1,17 +1,19 @@
 import React from "react";
+import './Pages.css'
 import MyCarousel from "../components/Carousel";
 import { QUERY_PROFILES } from "../queries/AnimalQuery";
 
 import { useQuery } from "@apollo/client";
 
-const HomePage = () => {
+function HomePage() {
+
   const { loading, data } = useQuery(QUERY_PROFILES);
-  const profiles = data || [];
-  if (!loading) {
+  console.log(data)
+  var randomAnimals = [];
+  if (!loading && data) {
     
-    
+    const profiles = data || [];
     let len = profiles.animals.length;
-    var randomAnimals = [];
     let previousIndex = -1;
     while (randomAnimals.length < 4) {
       const randomElement = Math.floor(Math.random() * len);
@@ -24,18 +26,23 @@ const HomePage = () => {
   }
  
     return (
+
+      
       <main>
-        {/* <div className="flex-row justify-center"> */}
+
+        <div className="flex-row justify-center maincontainer">
           <div className="col-12 col-md-10 my-3">
             {loading ? (
               <div>Loading...</div>
             ) : (
+
               <MyCarousel data={randomAnimals}></MyCarousel>
             )}
           </div>
-        {/* </div> */}
+        </div>
       </main>
-    );
+
+          );
   };
   
   

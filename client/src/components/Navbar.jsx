@@ -1,7 +1,9 @@
+import "./navbar.css";
 import { Layout, Menu } from "antd";
 import React, { useState } from "react";
 import {Link, useNavigate } from 'react-router-dom';
 const { Header, Footer, Sider, Content } = Layout;
+
 
 
 
@@ -29,15 +31,16 @@ function Navbar() {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
   const items = [
     {
       label: <a href="/">Home</a>,
       key: "home",
     },
-    {
-      label: <a href="/locations">Locations</a>, 
-      key: "maps",
-    },
+    // {
+    //   label: <a href="/locations">Locations</a>, 
+    //   key: "maps",
+    // },
     {
       label: <a href="/allanimals">All Animals</a>,
       key: "animals",
@@ -63,7 +66,7 @@ function Navbar() {
     } : null,  
     auth ?
     {
-      label: "User" ,
+      label: (<Link to="/user">User</Link>),
       key: "new Animal",
     } : null,  
   ];
@@ -80,22 +83,29 @@ function Navbar() {
   
   return (
     <>
-<Menu        onClick={onClick}
+        <div className="heads"> <span className='title'>T</span>he <span className='title'>A</span>nimal <span className='title'>K</span>ingdom 
+     
+    <div className="navibar">
+<Menu    onClick={onClick}
             selectedKeys={[current]}
             items={items}
             mode="horizontal"
           />
+          </div>
+          </div>
       {/* <Layout>
         <Content>
          
         
           
         </Content>
+
         <Sider>
           <RightMenu />
         </Sider>
         <Sider></Sider>
       </Layout>
+
       <Modal
         title="Basic Modal"
         open={isModalOpen}

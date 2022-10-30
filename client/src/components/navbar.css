@@ -9,6 +9,25 @@
 .indnt {
  color: chocolate;
 }
-.topbar{
+.topbar {
  /* background-color: ; */
+}
+.heads {
+ font-size: 35px;
+ font-family: cursive;
+ font-weight: bolder;
+ background-color: antiquewhite;
+height: 100px;
+}
+
+.title {
+ color: brown;
+}
+
+.ant-menu {
+ background-color: red;
+}
+.navibar  {
+ background-color: antiquewhite;
+ font-size: 20px;
 }

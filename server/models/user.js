@@ -1,15 +1,11 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
-const bcrypt = require('bcrypt');
 
+const bcrypt = require('bcrypt');
 const userSchema = new Schema({ 
  userName: {
     type: String,
-    // required: 'You need to leave a thought!',
     required: true,
-    unique:true,
-    // minlength: 1,
-    // maxlength: 280,
     trim: true,
   },
   email: {
@@ -25,12 +21,13 @@ const userSchema = new Schema({
    trim: true,
    minLength:8, 
  },
-//  animals: [
-//   {
-//     type:Schema.Types.ObjectId,
-//     ref: 'Animal'
-//   },
-//  ],
+//added
+ animals: [
+  {
+    type: Schema.Types.ObjectId,
+    ref: 'Animal'
+  }
+],
  });
 
   // setting up pre-save middleware to create password
@@ -42,11 +39,13 @@ const userSchema = new Schema({
     next();
   }) 
 
+
   //compare ths incomming passowrd with the hashed password
-  userSchema.methods.isCorrectPassword = async function(password) {
-    return bcrypt.compare(password, this.password);
+  userSchema.methods.isCorrectPassword = function(password) {
+    return bcrypt.compare(password,this.password);
   };
 
 const User = model('User', userSchema);
 
 module.exports = User;
+

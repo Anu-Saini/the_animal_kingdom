@@ -5,8 +5,8 @@ const donateSchema = new Schema({
  name: {
     type: String,
     }, 
-Value : { 
-  type: Float 
+value : { 
+  type: Number,
 }
 });
 
