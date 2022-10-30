@@ -37,11 +37,7 @@ function Navbar() {
       label: <a href="/">Home</a>,
       key: "home",
     },
-    // {
-    //   label: <a href="/locations">Locations</a>, 
-    //   key: "maps",
-    // },
-    {
+      {
       label: <a href="/allanimals">All Animals</a>,
       key: "animals",
     },
@@ -68,7 +64,11 @@ function Navbar() {
     {
       label: (<Link to="/user">User</Link>),
       key: "new Animal",
-    } : null,  
+    } : null, 
+    {
+      label: (<Link to="/donate">Donate</Link>),
+      key: "Donate",
+    }, 
   ];
     const onClick = (e) => {
       setCurrent(e.key);

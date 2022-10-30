@@ -1,3 +1,4 @@
+import './Pages.css';
 import { Button, Checkbox, Form, Input } from "antd";
 import React, { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
@@ -24,7 +25,12 @@ const formItemLayout = {
 };
 
 const container = {
-  padding: "20vh",
+  padding: "15vh",
+  display: 'flex',
+  flexDirection: 'column',
+  alignContent: 'stretch',
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start'
 };
 
 const tailFormItemLayout = {
@@ -88,7 +94,10 @@ const RegisterUser = (props) => {
     console.log("Failed:", errorInfo);
   };
   return (
+    <>
+    
     <div style={container}>
+    <h3 className="welcomemsg"> Welome to The Animal Kingdom, Please enter your details for a free membership</h3>
       <Form
         {...formItemLayout}
         form={form}
@@ -166,6 +175,7 @@ const RegisterUser = (props) => {
         </Form.Item>
       </Form>
     </div>
+    </>
   );
 };
 export default RegisterUser;

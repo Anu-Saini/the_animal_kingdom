@@ -26,9 +26,7 @@ function HomePage() {
   }
  
     return (
-
-      
-      <main>
+     <main>
 
         <div className="flex-row justify-center maincontainer">
           <div className="col-12 col-md-10 my-3">

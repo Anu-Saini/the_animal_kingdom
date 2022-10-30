@@ -5,6 +5,7 @@ import { QUERY_PROFILES } from "../queries/AnimalQuery";
 import { useQuery } from "@apollo/client";
 import { CAROUSAL_LIMIT } from "../utils/Constants";
 import MyCard from "../components/Card";
+import './Pages.css';
 
 const GuessGame = () => {
   const { loading, data } = useQuery(QUERY_PROFILES);
@@ -16,7 +17,7 @@ const GuessGame = () => {
     let len = profiles.animals.length;
    
     let previousIndex = -1;
-    while (randomAnimals.length < 4) {
+    while (randomAnimals.length < 8) {
       const randomElement = Math.floor(Math.random() * len);
       if (previousIndex === randomElement) {
         continue;
@@ -27,8 +28,8 @@ const GuessGame = () => {
   
  
 return(
- <main>
-        <div className="flex-row justify-center cardstack">
+ <main className="fullscreen">
+        <div className="flex-row justify-center cardstack fullscreen">
           <div className="col-12 col-md-10 my-3 cardrow">
             {loading ? (
               <div>Loading...</div>
