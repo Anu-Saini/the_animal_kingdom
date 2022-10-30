@@ -10,9 +10,11 @@ import GuessGame from "./pages/Guess";
 import Locations from "./pages/Locations";
 import Navbar from './components/Navbar';
 import HomePage from "./pages/Home";
+// import Donate from "./pages/donate";
+
 import AllAnimals from "./pages/AllAnimals/Animal";
 import Footer from './components/Footer';
-// import User from "./pages/User/User";
+import User from "./pages/User/user";
 import { apolloClient } from "./ApolloClient";
 
 const client = new ApolloClient({
@@ -31,7 +33,8 @@ function App() {
         <Route path="/register" element={<RegisterUser></RegisterUser>} />
         <Route path="/login" element={<LoginPage></LoginPage>} />  
         <Route path="/locations" element={<Locations></Locations>} />  
-        {/* <Route path="/user" element={<User/>} />  */}
+        <Route path="/user" element={<User/>} /> 
+        {/* <Route path="/donate" element={<Donate/>} />  */}
         <Route path="/guess" element={<GuessGame/>} />  
         <Route path="/allanimals" element={<AllAnimals/>} />  
     </Routes>

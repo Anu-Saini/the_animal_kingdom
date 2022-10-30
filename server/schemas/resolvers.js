@@ -2,6 +2,7 @@ const { AuthenticationError } = require("apollo-server-express");
 const { Animal, Class, User } = require("../models");
 const { signToken } = require("../utils/auth");
 const bcrypt = require('bcrypt');
+const stripe = require('stripe')('sk_test_51LyRaLCNXlGGeib4OSd3XyWwDSWtRMvaiWSqm8BAmY10ag2LyjeHDQrHJh2qbc7mRT2t0IxGwP01vADcPgWxcFY300OON6PzrM');
 
 const resolvers = {
   Query: {
@@ -34,7 +35,27 @@ const resolvers = {
     user: async (parent, { userId }) => {
       return User.findOne({ _id: userId });
     },
+      //-------------------------------------------------------------------
+    user: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: 'orders.products',
+          populate: 'category'
+        });
+
+        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+
+        return user;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
   },
+
+
+  //----------------------------------------------------------------
+
+
 
   Mutation: {
     addUser: async (parent, { userName, email, password }) => {
