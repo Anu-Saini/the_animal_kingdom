@@ -18,3 +18,5 @@ border: 2px solid Black;
 .ant-list {
  font-size: 16px;
 }
+.ant-list-item {
+ border : 1px solid black}

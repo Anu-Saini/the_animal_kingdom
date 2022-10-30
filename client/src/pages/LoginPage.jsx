@@ -4,10 +4,12 @@ import { Col, Row } from "antd";
 import "./Pages.css";
 import { useMutation, useQuery } from "@apollo/client";
 import { LOGIN_QUERY } from "../queries/AnimalQuery";
-
+import { useNavigate } from "react-router-dom";
+import { Card } from 'antd';
 
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     login: true,
     email: '',
@@ -16,7 +18,6 @@ function LoginPage() {
   });
 
   const [login, { data, loading, error }]= useMutation(LOGIN_QUERY, {
-
     variables: {
       email: formState.email,
       password: formState.password
@@ -25,6 +26,9 @@ function LoginPage() {
    if(!loading && data)
    {
     console.log(data.login)
+    localStorage.setItem('token', data.login.token);
+    localStorage.setItem('user', JSON.stringify(data.login.user));
+    navigate('/user');
    }
   const checkLogin = (values) => {
      
@@ -36,13 +40,15 @@ function LoginPage() {
     console.log("Failed:", errorInfo);
   };
   return (
-    <>
-      <Row>
-        <Col span={12}>
-          <div className="login-left-panel"></div>
-        </Col>
-        <Col span={12}>
-          <Form
+    <div className="site-card-border-less-wrapper">
+    <Card
+      title="Card title"
+      bordered={false}
+      style={{
+        width: 300,
+      }}
+    >
+       <Form
             name="basic"
             labelCol={{
               span: 8,
@@ -133,9 +139,9 @@ function LoginPage() {
               </Button>
             </Form.Item>
           </Form>
-        </Col>
-      </Row>
-    </>
-  );
-};
+    </Card>
+  </div>
+);
+            }
+
 export default LoginPage;

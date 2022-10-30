@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { useMutation } from "@apollo/client";
+import { Link } from 'react-router-dom';
 import {
   Form,
   Input,
@@ -12,7 +13,9 @@ import {
   notification 
 } from "antd";
 import { NEW_ANIMAL } from "../../queries/AnimalQuery";
-import { json } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
+import uploadFileToBlob from "./UploadToBlob";
+import Auth from '../../utils/auth';
 const { TextArea } = Input;
 const tailFormItemLayout = {
   wrapperCol: {
@@ -28,6 +31,7 @@ const tailFormItemLayout = {
 };
 
 const user = JSON.parse(localStorage.getItem("user"));
+
 const openNotification = (message, title) => {
   notification.open({
     message: title,
@@ -38,7 +42,10 @@ const openNotification = (message, title) => {
     },
   });
 };
+
 const NewAnimal = (props) => {
+
+ const [submitDisabled, setSubmitDisabled] =  useState(false);
   const [locations, setlocations] = useState([""]);
 
   const [formState, setFormState] = useState({
@@ -52,8 +59,8 @@ const NewAnimal = (props) => {
     threats: "",
     population: 0,
     locations: locations,
-    image: [""],
-    submitBy: user._id,
+    images: [""],
+    submitBy: user ? user._id : "",
   });
 
   const [NewAnimal, { data, loading, error }] = useMutation(NEW_ANIMAL);
@@ -77,16 +84,12 @@ const NewAnimal = (props) => {
           description: formState.description,
           submitBy: formState.submitBy,
           location: formState.locations,
-          image: formState.locations,
+          image: formState.images,
         },
       }).then((data) =>{
         openNotification(`${data.data.addAnimal.animalName} has been added`, 'Success');
-      }).catch((err) =>{
-           
       })
-
-    
-     
+  
     } catch (err) {
     
       console.error(err.message);
@@ -107,7 +110,24 @@ const NewAnimal = (props) => {
       return isPNG || Upload.LIST_IGNORE;
     },
   };
+
+  const upload = (images) =>{
+    setSubmitDisabled(true);
+    const data = uploadFileToBlob(images, user._id);
+    data.then((urls) =>{
+      
+      console.log(urls)
+      setFormState({
+        ...formState,
+        images: urls,
+      })
+    } ).then(() =>{
+      setSubmitDisabled(false)
+    })
+  }
   return (
+    <>
+    {Auth.loggedIn() ? (
     <Form
       labelCol={{ span: 4 }}
       wrapperCol={{ span: 14 }}
@@ -312,7 +332,7 @@ const NewAnimal = (props) => {
       </Form.Item>
 
       <Form.Item label="Upload" name="image">
-        <Upload {...prop} action="/upload.do" listType="picture-card">
+        <Upload {...prop} action={upload} listType="picture-card">
           <div>
             <PlusOutlined />
             <div style={{ marginTop: 8 }}>Upload</div>
@@ -321,12 +341,19 @@ const NewAnimal = (props) => {
       </Form.Item>
 
       <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit">
+        <Button disabled={submitDisabled} type="primary" htmlType="submit">
           Register
         </Button>
       </Form.Item>
     </Form>
-  );
-};
+  ) : 
+  (
+    <p>
+      You need to be logged in to share your thoughts. Please{' '}
+      <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+    </p>
+  )}
+  </>
+)};
 
 export default () => <NewAnimal />;
