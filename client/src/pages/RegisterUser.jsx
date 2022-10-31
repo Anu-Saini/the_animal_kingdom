@@ -95,10 +95,11 @@ const RegisterUser = (props) => {
   };
   return (
     <>
-    
-    <div style={container}>
+        <div style={container}>
     <h3 className="welcomemsg"> Welome to The Animal Kingdom, Please enter your details for a free membership</h3>
-      <Form
+      
+      <div style={container} >
+        <Form
         {...formItemLayout}
         form={form}
         name="register"
@@ -174,6 +175,7 @@ const RegisterUser = (props) => {
           </Button>
         </Form.Item>
       </Form>
+    </div>
     </div>
     </>
   );

@@ -5,7 +5,7 @@
 import { BlobServiceClient, ContainerClient} from '@azure/storage-blob';
 
 var containerName = "";
-const sasToken = "?sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2023-10-30T14:31:08Z&st=2022-10-30T06:31:08Z&spr=https&sig=zkGG%2BROR%2FFQAPkt7hs383aSuyZgesWRUhnUrA1Ub4IA%3D";
+const sasToken = "sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2023-10-31T18:25:48Z&st=2022-10-31T10:25:48Z&spr=https,http&sig=rOc%2Bs%2B%2Bd9if1%2BkgY0MkToGQLxCjpgf4M3U5XD1rqQr4%3D";
 const storageAccountName = "animalkingdomstorage"; 
 
 // </snippet_package>

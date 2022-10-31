@@ -127,8 +127,8 @@ function AnimalsByUser() {
               extra={item.image.map((img) => {
                 return (
                   <Image
-                    width={100}
-                    height={100}
+                    width={150}
+                    height={150}
                     alt={item.animalName}
                     src={img}
                   />

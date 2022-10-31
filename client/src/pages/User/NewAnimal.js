@@ -117,7 +117,7 @@ else{
           threats: formState.threats,
           description: formState.description,
           submitBy: formState.submitBy,
-          location: formState.locations,
+          location: formState.location,
           image: formState.image,
         },
       }).then((data) =>{
@@ -154,7 +154,7 @@ else{
       console.log(urls)
       setFormState({
         ...formState,
-        images: urls,
+        image: urls,
       })
     } ).then(() =>{
       setSubmitDisabled(false)

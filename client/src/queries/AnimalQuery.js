@@ -50,7 +50,7 @@ export const NEW_ANIMAL = gql`
     $otherName: String!
     $classification: String!
     $family: String!
-    $age: Int!
+    $age: String!
     $foods: String!
     $population: String!
     $threats: String!
