@@ -8,7 +8,8 @@ The project has been developed as a part of learning objective for Animal Life.T
 3. [Using_the_Application](#Using_the_Application)
 4. [Images](#Images)
 5. [Techonology](#Techonology)
-6. [Questions](#Questions)
+6. [Issues_Facing](#Issues_In Functionality)
+7. [Questions](#Questions)
 
 ## Description 
 This web-application built as Wildlife learning platform which can be referenced for inforamtion for any particular animal.
@@ -55,8 +56,22 @@ React.js, Ant Design, Custom CSS<br>
 Node.js, Express.js, JWT, Stripe<br>
 Mongoose ,  MongoDB, Mongo Atlas, Azure Storage Blobs
 
+## Issues_In Functionality
+Due to time constraint , the following features are not functional at the moment. I am still working on the same.
+
+ ### Deployment of Application on Heroku.com 
+ the application fails to be deployed on the heroku page. It given an application error, despite building correctly.
+
+ ### Payment Functionality 
+ the application only has the front end Donation features, however the back end and supported functionality has not been added due to time constraints.
+ 
+ ### New User Added Animals display 
+ on Being active,the user is able to add new animals to the database as well as add images to Azure blobs. Once added, the new animals is not being displayed in users account due to some issue in displaying/styling.  
+ The addition of Animals can be verified by looking for the added Animal in all Animals.  
+  
+
 ### Application  
-The application has been hoisted on cloud by using a cloud service platform called Heroku. The link to the application is: https://theanimalworld.herokuapp.com
+The application has been hoisted on cloud by using a cloud service platform called Heroku. The link to the application is: https://wildlifeproject.herokuapp.com/
 
 
 ## Collaborators
